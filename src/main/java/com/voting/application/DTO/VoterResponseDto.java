@@ -1,6 +1,5 @@
-package com.voting.application.Entity;
+package com.voting.application.DTO;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,14 +8,9 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@Entity
-@Table(name = "voter")
 @NoArgsConstructor
-public class VoterEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class VoterResponseDto {
     private Long id;
-    
     private String name;
     private String mobileNumber;
     private Boolean hasVoted = false;
