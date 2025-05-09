@@ -1,22 +1,16 @@
-package com.voting.application.Entity;
+package com.voting.application.DTO;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Data
-@Setter
 @Getter
-@Entity
+@Setter
 @NoArgsConstructor
-@Table(name = "candidate")
-public class CandidateEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CandidateResponseDto {
     private Long id;
-
     private String name;
     private String partyName;
 }
