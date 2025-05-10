@@ -15,6 +15,10 @@ public class CandidateMapper {
         CandidateEntity candidateEntity = new CandidateEntity();
         candidateEntity.setName(candidateRequestDto.getName());
         candidateEntity.setPartyName(candidateRequestDto.getPartyName());
+        candidateEntity.setMobileNumber(candidateRequestDto.getMobileNumber());
+        candidateEntity.setEmail(candidateRequestDto.getEmail());
+        candidateEntity.setConstituency(candidateRequestDto.getConstituency());
+        candidateEntity.setAge(candidateRequestDto.getAge());
         return candidateEntity;
     }
 
@@ -23,6 +27,10 @@ public class CandidateMapper {
         candidateResponseDto.setId(candidateEntity.getId());
         candidateResponseDto.setName(candidateEntity.getName());
         candidateResponseDto.setPartyName(candidateEntity.getPartyName());
+        candidateResponseDto.setEmail(candidateEntity.getEmail());
+        candidateResponseDto.setAge(candidateEntity.getAge());
+        candidateResponseDto.setConstituency(candidateEntity.getConstituency());
+        candidateResponseDto.setMobileNumber(candidateEntity.getMobileNumber());
         return candidateResponseDto;
     }
 
