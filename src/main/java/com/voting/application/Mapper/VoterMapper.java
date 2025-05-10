@@ -13,6 +13,8 @@ public class VoterMapper {
         VoterEntity voterEntity = new VoterEntity();
         voterEntity.setName(voterRequestDto.getName());
         voterEntity.setMobileNumber(voterRequestDto.getMobileNumber());
+        voterEntity.setEmail(voterRequestDto.getEmail());
+        voterEntity.setGovernmentId(voterRequestDto.getGovernmentId());
         voterEntity.setHasVoted(voterRequestDto.getHasVoted());
         return voterEntity;
     }
@@ -22,6 +24,8 @@ public class VoterMapper {
         voterResponseDto.setId(voterEntity.getId());
         voterResponseDto.setName(voterEntity.getName());
         voterResponseDto.setMobileNumber(voterEntity.getMobileNumber());
+        voterResponseDto.setEmail(voterEntity.getEmail());
+        voterResponseDto.setGovernmentId(voterEntity.getGovernmentId());
         voterResponseDto.setHasVoted(voterEntity.getHasVoted());
         return voterResponseDto;
     }

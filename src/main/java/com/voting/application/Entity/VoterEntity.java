@@ -10,7 +10,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "voter")
+@Table(name = "voters", uniqueConstraints ={
+        @UniqueConstraint(columnNames = "mobileNumber"),
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "governmentId")
+})
 @NoArgsConstructor
 public class VoterEntity {
     @Id
@@ -18,6 +22,15 @@ public class VoterEntity {
     private Long id;
     
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String mobileNumber;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false, unique = true)
+    private String governmentId;
+
     private Boolean hasVoted = false;
 }
