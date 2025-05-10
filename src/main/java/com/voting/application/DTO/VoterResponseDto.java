@@ -13,5 +13,7 @@ public class VoterResponseDto {
     private Long id;
     private String name;
     private String mobileNumber;
+    private String email;
+    private String governmentId;
     private Boolean hasVoted = false;
 }
