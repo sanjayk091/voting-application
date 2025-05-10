@@ -1,6 +1,10 @@
 package com.voting.application.Controller;
 
+import com.voting.application.DTO.VotingSessionRequestDto;
+import com.voting.application.DTO.VotingSessionResponseDto;
 import com.voting.application.Service.AdminService;
+import com.voting.application.Service.VotingSessionService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +17,26 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-    @GetMapping("/results")
-    public ResponseEntity<Map<String, Long>> getResults() {
+    @Autowired
+    private VotingSessionService votingSessionService;
+    @Operation(summary = "Get voting result")
+    @GetMapping("/result")
+    public ResponseEntity<Map<String, Long>> getResult() {
         return ResponseEntity.ok(adminService.getLiveResults());
+    }
+
+    @Operation(summary = "Start a new voting session")
+    @PostMapping("/voting-session/start")
+    private ResponseEntity<VotingSessionResponseDto> startSession(@RequestBody VotingSessionRequestDto votingSessionDto){
+        VotingSessionResponseDto votingSession = votingSessionService.startSession(votingSessionDto);
+        return ResponseEntity.ok(votingSession);
+    }
+
+    @Operation(summary = "End an ongoing voting session by ID")
+    @PostMapping("/voting-session/{id}/end")
+    public ResponseEntity<String> endSession(@PathVariable("id") Long id) {
+        votingSessionService.endSession(id);
+        return ResponseEntity.ok("Voting Session Closed. ");
     }
 
 }
