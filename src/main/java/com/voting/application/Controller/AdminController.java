@@ -1,5 +1,6 @@
 package com.voting.application.Controller;
 
+import com.voting.application.DTO.VotingResultDto;
 import com.voting.application.DTO.VotingSessionRequestDto;
 import com.voting.application.DTO.VotingSessionResponseDto;
 import com.voting.application.Service.AdminService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,8 +23,9 @@ public class AdminController {
     private VotingSessionService votingSessionService;
     @Operation(summary = "Get voting result")
     @GetMapping("/result")
-    public ResponseEntity<Map<String, Long>> getResult() {
-        return ResponseEntity.ok(adminService.getLiveResults());
+    public ResponseEntity<List<VotingResultDto>> getResult() {
+        List<VotingResultDto> votingResultList = adminService.getLiveResults();
+        return ResponseEntity.ok(votingResultList);
     }
 
     @Operation(summary = "Start a new voting session")
@@ -33,9 +36,9 @@ public class AdminController {
     }
 
     @Operation(summary = "End an ongoing voting session by ID")
-    @PostMapping("/voting-session/{id}/end")
-    public ResponseEntity<String> endSession(@PathVariable("id") Long id) {
-        votingSessionService.endSession(id);
+    @PostMapping("/voting-session/end")
+    public ResponseEntity<String> endSession() {
+        votingSessionService.endSession();
         return ResponseEntity.ok("Voting Session Closed. ");
     }
 

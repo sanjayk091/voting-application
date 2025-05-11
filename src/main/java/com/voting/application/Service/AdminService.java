@@ -1,10 +1,13 @@
 package com.voting.application.Service;
 
+import com.voting.application.DTO.VotingResultDto;
 import com.voting.application.Entity.VoteEntity;
 import com.voting.application.Repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -12,9 +15,18 @@ import java.util.stream.Collectors;
 public class AdminService {
     @Autowired
     private VoteRepository voteRepository;
-    public Map<String, Long> getLiveResults() {
+    public List<VotingResultDto> getLiveResults() {
         return voteRepository.findAll().stream()
-                .collect(Collectors.groupingBy(v -> v.getCandidate().getName(), Collectors.counting()));
+                .map(candidate -> {
+                    Long votes = voteRepository.countByCandidateId(candidate.getId());
+                    return new VotingResultDto(
+                            candidate.getCandidate().getId(),
+                            candidate.getCandidate().getName(),
+                            candidate.getCandidate().getPartyName(),
+                            votes
+                    );
+                })
+                .collect(Collectors.toList());
     }
 
 }
