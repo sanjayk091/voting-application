@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Panel</title>
+    <link rel="stylesheet" href="voter.css">
+</head>
+<body>
+<div class="container">
+    <h2>Voter Registration</h2>
+    <form id="voterForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="mobileNumber" placeholder="Mobile Number" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="governmentId" placeholder="Government ID (12 digits)" required>
+        <button type="submit">Register</button>
+    </form>
+    <div id="alertMessage"></div>
+</div>
+
+<script src="voter.js"></script>
+</body>
+</html>

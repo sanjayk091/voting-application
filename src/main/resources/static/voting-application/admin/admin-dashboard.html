@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<div class="container">
+    <h2>Admin Panel</h2>
+
+    <!-- Voting Session Time Fields -->
+    <div class="session-time-inputs">
+        <label for="startTime">Start Time:</label>
+        <input type="datetime-local" id="startTime" />
+
+        <label for="endTime">End Time:</label>
+        <input type="datetime-local" id="endTime" />
+    </div>
+
+    <!-- Buttons placed below the input fields -->
+    <div class="session-controls">
+        <button onclick="startSession()">Start Voting</button>
+        <button onclick="endSession()">End Voting</button>
+    </div>
+
+    <!-- Center Button -->
+    <div class="center-button">
+        <button onclick="viewResults()">View Results</button>
+    </div>
+
+    <!-- Results Table -->
+    <div id="results">
+        <h3>Voting Results</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Candidate ID</th>
+                <th>Name</th>
+                <th>Party Name</th>
+                <th>Total Votes</th>
+            </tr>
+            </thead>
+            <tbody id="resultsBody">
+            <tr><td colspan="4">No results yet</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
